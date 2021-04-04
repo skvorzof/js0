@@ -1,68 +1,61 @@
 'use strict';
 
-// Транспортное средство - базовый конструктор
-function Vehicle(options) {
-  this.name = options.name;
-  this.type = options.type;
-  this.speed = options.speed;
-  this.units = options.units;
-  this.wheel = 4; // значение по умолчанию
-}
-// Метод родительского конструктора
-Vehicle.prototype.getInfo = function () {
-  console.log(
-    `     Тип: ${this.type},
-     Наименование: ${this.name},
-     Скорость: ${this.speed} ${this.units}
-     Кол-во колёс: ${this.wheel}`
-  );
-};
-
-// Дочернии конструкторы
-// Автомобиль
-function Car(options) {
-  Vehicle.apply(this, arguments);
-  this.name = options.name;
-  this.type = options.type;
-  this.speed = options.speed;
-  this.units = options.units;
-  this.clearance = options.clearance;
-}
-// Прототипное наследование от Vehicle
-Car.prototype = Object.create(Vehicle.prototype);
-// Констркутор для Car
-Car.prototype.constructor = Car;
-
-// Переопределение родительского метода
-Car.prototype.getInfo = function () {
-  console.log(
-    `     Тип: ${this.type},
-     Наименование: ${this.name}, 
-     Скорость: ${this.speed} ${this.units}, 
-     Дорожный просвет: ${this.clearance} мм
-     Кол-во колёс: ${this.wheel}`
-  );
-};
-
-// Самолёт
-function Plane(options) {
-  Vehicle.apply(this, arguments);
-  this.wheel = options.wheel;
+// Транспортное средство - базовый класс
+class Vehicle {
+  constructor(options) {
+    this.name = options.name;
+    this.type = options.type;
+    this.speed = options.speed;
+    this.units = options.units;
+    this.wheel = 4;
+  }
+  getInfo() {
+    console.log(
+      `       Тип: ${this.type},
+       Наименование: ${this.name},
+       Скорость: ${this.speed} ${this.units}
+       Кол-во колёс: ${this.wheel}`
+    );
+  }
 }
 
-Plane.prototype = Object.create(Vehicle.prototype);
-Plane.prototype.constructor = Plane;
-
-// Корабль
-function Ship(options) {
-  Vehicle.apply(this, arguments);
-  this.wheel = options.wheel;
+// Автомобиль, дочерний класс расширенный от Базового класса
+class Car extends Vehicle {
+  constructor(options) {
+    super(options);
+    this.name = options.name;
+    this.type = options.type;
+    this.speed = options.speed;
+    this.units = options.units;
+    this.clearance = options.clearance;
+  }
+  getInfo() {
+    console.log(
+      `       Тип: ${this.type},
+       Наименование: ${this.name}, 
+       Скорость: ${this.speed} ${this.units}, 
+       Дорожный просвет: ${this.clearance} мм
+       Кол-во колёс: ${this.wheel}`
+    );
+  }
 }
 
-Ship.prototype = Object.create(Vehicle.prototype);
-Ship.prototype.constructor = Ship;
+// Самолёт, дочерний класс расширенный от Базового класса
+class Plane extends Vehicle {
+  constructor(options) {
+    super(options);
+    this.wheel = options.wheel;
+  }
+}
 
-// Экземпляры объектов
+// Корабль, дочерний класс расширенный от Базового класса
+class Ship extends Vehicle {
+  constructor(options) {
+    super(options);
+    this.wheel = options.wheel;
+  }
+}
+
 let car = new Car({
   name: 'Toyota',
   type: '🚗 автомобиль',
