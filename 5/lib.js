@@ -4,7 +4,7 @@
   }
 
   window.startGame = function () {
-    let amountCount = 10;
+    let amountCount = 10; // Кол-во попыток
     let secretNumber = makeSecretNumber();
 
     while (amountCount >= 0) {
