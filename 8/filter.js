@@ -1,11 +1,9 @@
 'use strict';
 
-function filterByType(type) {
+function filterByType(type, ...arg) {
   let filterEl = typeof type; // определить тип фильтрации
 
-  let arr = Array.prototype.slice.call(arguments);
-  arr.shift(); // Удалить первый элемент (тип)
-
+  let arr = Array.prototype.slice.call(arg);
   return arr.filter((i) => typeof i === filterEl);
 }
 
