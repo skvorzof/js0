@@ -24,15 +24,14 @@
         padding-bottom: 18px;
         user-select: none;
         cursor: pointer;
+        position: relative;
       }
       ol li::before {
         counter-increment: castom-counter;
+        content: counter(cnt) '. ';
         color: goldenrod;
         font-weight: bold;
-      }
-      .reversed ol li::before {
         counter-increment: cnt -1;
-        content: counter(cnt) '. ';
       }
       .done {
         text-decoration: line-through;
@@ -55,7 +54,7 @@
     </style>
   </head>
   <body>
-    <div class="container reversed">
+    <div class="container">
       <h1>Список задач</h1>
       <ol id="todo_list" class="reversed">
         <li>Реализовать программу</li>
