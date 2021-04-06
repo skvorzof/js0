@@ -20,7 +20,7 @@ function sendForm(e) {
   if (todo.trim() == '') {
     alert('Поле не должно быть пустым ✍️');
   } else {
-    addNewTodo(e.target[0].value);
+    addNewTodo(todo);
   }
   e.target[0].value = ''; // Очистить input
 }
