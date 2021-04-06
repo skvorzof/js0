@@ -6,6 +6,9 @@ let form = document.querySelector('form');
 form.addEventListener('submit', sendForm);
 
 function getTodos() {
+  let count = todoList.children.length + 1; // Кол-во <li>
+  todoList.style.counterReset = 'cnt ' + count;
+
   let todos = document.querySelectorAll('#todo_list li');
   todos.forEach((el) => el.addEventListener('click', doneTodo));
 }

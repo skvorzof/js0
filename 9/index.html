@@ -24,12 +24,15 @@
         padding-bottom: 18px;
         user-select: none;
         cursor: pointer;
-        counter-increment: castom-counter;
       }
       ol li::before {
-        content: counter(castom-counter) '. ';
+        counter-increment: castom-counter;
         color: goldenrod;
         font-weight: bold;
+      }
+      .reversed ol li::before {
+        counter-increment: cnt -1;
+        content: counter(cnt) '. ';
       }
       .done {
         text-decoration: line-through;
@@ -52,9 +55,10 @@
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="container reversed">
       <h1>Список задач</h1>
-      <ol id="todo_list" reversed>
+      <ol id="todo_list" class="reversed">
+        <li>Реализовать программу</li>
         <li class="done">Реализовать программу Todo</li>
       </ol>
       <form>
