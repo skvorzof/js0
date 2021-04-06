@@ -14,10 +14,11 @@ getTodos(); // Получить список totoList
 
 function sendForm(e) {
   e.preventDefault();
-  let todo = e.target[0].value;
+
+  let todo = e.target[0].value.trim();
 
   // Проверка на пустую запись
-  if (todo.trim() == '') {
+  if (todo == '') {
     alert('Поле не должно быть пустым ✍️');
   } else {
     addNewTodo(todo);
