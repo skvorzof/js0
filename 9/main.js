@@ -1,0 +1,38 @@
+'use strict';
+
+let todoList = document.getElementById('todo_list');
+
+let form = document.querySelector('form');
+form.addEventListener('submit', sendForm);
+
+function getTodos() {
+  let todos = document.querySelectorAll('#todo_list li');
+  todos.forEach((el) => el.addEventListener('click', doneTodo));
+}
+
+getTodos(); // Получить список totoList
+
+function sendForm(e) {
+  e.preventDefault();
+  let todo = e.target[0].value;
+
+  // Проверка на пустую запись
+  if (todo.trim() == '') {
+    alert('Поле не должно быть пустым ✍️');
+  } else {
+    addNewTodo(e.target[0].value);
+  }
+  e.target[0].value = ''; // Очистить input
+}
+
+function addNewTodo(todo) {
+  let el = document.createElement('li');
+  el.textContent = todo;
+  todoList.prepend(el); // Добавить новый todo в начало списка
+
+  getTodos(); // Обновить список totoList
+}
+
+function doneTodo() {
+  this.classList.toggle('done');
+}
