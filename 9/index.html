@@ -17,11 +17,19 @@
       }
       ol {
         padding-left: 0;
+        list-style: none;
+        counter-reset: castom-counter;
       }
-      li {
+      ol li {
         padding-bottom: 18px;
         user-select: none;
         cursor: pointer;
+        counter-increment: castom-counter;
+      }
+      ol li::before {
+        content: counter(castom-counter) '. ';
+        color: goldenrod;
+        font-weight: bold;
       }
       .done {
         text-decoration: line-through;
