@@ -20,6 +20,8 @@ function sendForm(e) {
   // Проверка на пустую запись
   if (todo == '') {
     alert('Поле не должно быть пустым ✍️');
+  } else if (isTodoExist(todo)) {
+    alert('Запись существует 🤓');
   } else {
     addNewTodo(todo);
   }
@@ -36,4 +38,14 @@ function addNewTodo(todo) {
 
 function doneTodo() {
   this.classList.toggle('done');
+}
+
+function isTodoExist(todo) {
+  let res = false;
+  let arrTodos = [...document.querySelectorAll('#todo_list li')];
+
+  arrTodos.forEach((el) => {
+    if (el.outerText == todo) res = true;
+  });
+  return res;
 }
