@@ -20,18 +20,38 @@ h1 {
   display: inline;
 }
 .btn {
-  border: none;
-  line-height: 25px;
+  line-height: 16px;
+  color: #ffffff;
+  border: 1px solid;
+  border-radius: 3px;
+}
+.btn_edit {
+  background: #ffe6c7;
+  border-color: #f29320;
+  color: #f29320;
+}
+.btn_edit:disabled {
+  background: #f3f3f4;
+  border-color: #f3f3f4;
+  color: #ffffff;
 }
 .btn_exit {
-  background: coral;
-  color: white;
+  background: #b3f5c9;
+  border-color: #48b66c;
+  color: #48b66c;
 }
 .btn_save {
-  background: cornflowerblue;
-  color: white;
+  background: #e7f1ff;
+  border-color: #0f6fff;
+  color: #0f6fff;
+}
+.btn_del {
+  background: #fef1f2;
+  border-color: #f23040;
+  color: #f23040;
 }
 .btn_save,
+.btn_del,
 .btn_exit {
   display: none;
 }
