@@ -10,15 +10,18 @@ const defaultContent = `<p>
 const content = document.querySelector('.content');
 const btnEdit = document.querySelector('.btn_edit');
 const btnSave = document.querySelector('.btn_save');
+const btnDel = document.querySelector('.btn_del');
 const btnExit = document.querySelector('.btn_exit');
 const select = document.getElementById('select');
 
 btnEdit.addEventListener('click', editContent);
 btnSave.addEventListener('click', saveContent);
+btnDel.addEventListener('click', delContent);
 btnExit.addEventListener('click', exit);
 select.addEventListener('change', changeSelect);
 
 const arr = []; // array ключей редакций контента
+let curKey = null;
 
 // Получаем сортированные ключи из localStorage
 function getKeys() {
@@ -39,6 +42,7 @@ function getDataStore(key) {
   // Записываем в контент значение key из localStorage
   // Если localStorage пустой, присваиваем  default значение
   let dataStore = localStorage.getItem(key) || defaultContent;
+  curKey = key; // Key для удаления
   content.innerHTML = dataStore;
 }
 
@@ -48,6 +52,7 @@ function editContent() {
   btnEdit.disabled = true;
   select.disabled = true;
   btnSave.style.display = 'inline';
+  btnDel.style.display = 'inline';
   btnExit.style.display = 'inline';
 }
 
@@ -61,6 +66,7 @@ function saveContent() {
   content.contentEditable = false;
   content.style.background = 'white';
   btnSave.style.display = 'none';
+  btnDel.style.display = 'none';
   btnExit.style.display = 'none';
   btnEdit.disabled = false;
   select.disabled = false;
@@ -81,6 +87,11 @@ function createSelectOptions() {
 
 function changeSelect() {
   getDataStore(this.value);
+}
+
+function delContent() {
+  localStorage.removeItem(curKey);
+  location.reload(); // 🤢
 }
 
 getKeys();
