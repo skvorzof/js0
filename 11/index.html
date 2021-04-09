@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SWAPI JS M11</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="content">
+      <div class="search">
+        <div class="search_form">
+          <label
+            >Поиск:
+            <input type="text" class="person_search" id="person_search_input" />
+          </label>
+          <label
+            >в категории:
+            <select class="category_search" id="category_search_input"></select>
+          </label>
+          <button id="search_request_btn" class="button">Найти</button>
+        </div>
+        <ul class="search_result"></ul>
+      </div>
+
+      <div class="person_data">
+        <div>Имя: <span id="name"></span></div>
+        <div>Рост: <span id="height"></span></div>
+        <div>Вес: <span id="mass"></span></div>
+        <div>Год рождения: <span id="birth_year"></span></div>
+        <div>В скольки фильмах появлялся: <span id="films_count"></span></div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
