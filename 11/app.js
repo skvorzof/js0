@@ -2,6 +2,8 @@
 
 let url = 'https://swapi.dev/api/people/'; // 🤢
 
+const arr = [];
+
 const input = document.querySelector('#person_search_input');
 const select = document.querySelector('#category_search_input');
 const btnSearch = document.querySelector('#search_request_btn');
@@ -46,6 +48,10 @@ async function search() {
   if (searchRes.count == 0) return (ul.innerHTML = 'Ничего нет');
 
   searchRes.results.forEach((item) => {
+    arr.push(item);
+  });
+
+  arr.forEach((item) => {
     // Вывод объектов в ul, // добавление события onklick 🤢
     li += `<li onclick="selectItem(this)" value="${item.name}">${item.name}</li>`;
   });
@@ -54,13 +60,11 @@ async function search() {
 }
 
 // Функция по событию onclick
-async function selectItem(item) {
+function selectItem(item) {
   // Данные переданые в атрибуте value
   let el = item.getAttribute('value');
 
-  let searchRes = await apiFetch(url);
-
-  const res = searchRes.results
+  arr
     // Фильтр выбранного объекта
     .filter((item) => item.name === el)
     // Заполнение данных объекта
