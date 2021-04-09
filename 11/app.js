@@ -45,9 +45,7 @@ async function search() {
 
   if (searchRes.count == 0) return (ul.innerHTML = 'Ничего нет');
 
-  const arr = searchRes.results.map((item) => item);
-
-  arr.forEach((item) => {
+  const arr = searchRes.results.map((item) => {
     // Вывод объектов в ul, // добавление события onklick 🤢
     let values = [
       item.name,
