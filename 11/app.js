@@ -18,9 +18,9 @@ btnSearch.addEventListener('click', search);
 
 async function apiFetch(url) {
   let response = await fetch(url);
-  if (response.status === 200) {
-    return response.json();
-  }
+
+  if (response.status === 200) return response.json();
+
   throw new Error(alert(response.status));
 }
 
