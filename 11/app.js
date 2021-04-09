@@ -2,8 +2,6 @@
 
 let url = 'https://swapi.dev/api/people/'; // 🤢
 
-const arr = [];
-
 const input = document.querySelector('#person_search_input');
 const select = document.querySelector('#category_search_input');
 const btnSearch = document.querySelector('#search_request_btn');
@@ -47,13 +45,19 @@ async function search() {
 
   if (searchRes.count == 0) return (ul.innerHTML = 'Ничего нет');
 
-  searchRes.results.forEach((item) => {
-    arr.push(item);
-  });
+  const arr = searchRes.results.map((item) => item);
 
   arr.forEach((item) => {
     // Вывод объектов в ul, // добавление события onklick 🤢
-    li += `<li onclick="selectItem(this)" value="${item.name}">${item.name}</li>`;
+    let values = [
+      item.name,
+      item.height,
+      item.mass,
+      item.birth_year,
+      item.films.length,
+    ];
+
+    li += `<li onclick="selectItem(this)" value="${values}">${item.name}</li>`;
   });
 
   ul.innerHTML = li;
@@ -62,18 +66,12 @@ async function search() {
 // Функция по событию onclick
 function selectItem(item) {
   // Данные переданые в атрибуте value
-  let el = item.getAttribute('value');
+  let el = item.getAttribute('value').split(',');
 
-  arr
-    // Фильтр выбранного объекта
-    .filter((item) => item.name === el)
-    // Заполнение данных объекта
-    .map((item) => {
-      nameItem.textContent = item.name;
-      heightItem.textContent = item.height;
-      massItem.textContent = item.mass;
-      birthItem.textContent = item.birth_year;
-      filmsItem.textContent = item.films.length;
-    });
+  nameItem.textContent = el[0];
+  heightItem.textContent = el[1];
+  massItem.textContent = el[2];
+  birthItem.textContent = el[3];
+  filmsItem.textContent = el[4];
 }
 createCategorySearch();
