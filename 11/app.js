@@ -1,6 +1,6 @@
 'use strict';
 
-let url = 'https://swapi.dev/api/people/'; // 🤢
+let url = 'https://swapi.dev/api/people'; // 🤢
 
 const input = document.querySelector('#person_search_input');
 const select = document.querySelector('#category_search_input');
@@ -18,7 +18,10 @@ btnSearch.addEventListener('click', search);
 
 async function apiFetch(url) {
   let response = await fetch(url);
-  return response.json();
+  if (response.status === 200) {
+    return response.json();
+  }
+  throw new Error(alert(response.status));
 }
 
 async function createCategorySearch() {
@@ -46,7 +49,6 @@ async function search() {
   if (searchRes.count == 0) return (ul.innerHTML = 'Ничего нет');
 
   const arr = searchRes.results.map((item) => {
-    // Вывод объектов в ul, // добавление события onklick 🤢
     let values = [
       item.name,
       item.height,
@@ -55,6 +57,7 @@ async function search() {
       item.films.length,
     ];
 
+    // Вывод объектов в ul, // добавление события onklick 🤢
     li += `<li onclick="selectItem(this)" value="${values}">${item.name}</li>`;
   });
 
