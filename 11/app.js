@@ -26,7 +26,7 @@ async function createCategorySearch() {
   let option;
 
   for (const [key, value] of Object.entries(category)) {
-    if (key != 'films') option += `<option value=${value}>${key}</option>`;
+    if (key !== 'films') option += `<option value=${value}>${key}</option>`;
   }
 
   select.innerHTML = option;
@@ -44,7 +44,7 @@ async function search() {
 
   data = await apiFetch(query);
 
-  if (data.count == 0) return (ul.innerHTML = 'Ничего нет 👀');
+  if (data.count === 0) return (ul.innerHTML = 'Ничего нет 👀');
 
   data.results.map((item, index) => {
     li += `<li data-index="${index}">${item.name}</li>`;
@@ -56,7 +56,7 @@ async function search() {
 // Вывод персональнй информации по клику
 ul.addEventListener('click', (e) => {
   let target = e.target;
-  if (target.tagName != 'LI' || !target.getAttribute('data-index')) return;
+  if (target.tagName !== 'LI' || !target.getAttribute('data-index')) return;
 
   let targetData = target.getAttribute('data-index');
   targetData = data.results[targetData];
