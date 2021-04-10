@@ -26,7 +26,7 @@ async function createCategorySearch() {
   let option;
 
   for (const [key, value] of Object.entries(category)) {
-    option += `<option value=${value}>${key}</option>`;
+    if (key != 'films') option += `<option value=${value}>${key}</option>`;
   }
 
   select.innerHTML = option;
