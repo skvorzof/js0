@@ -20,8 +20,8 @@ async function apiFetch(url) {
   throw new Error(alert('Ошибка сервера 💩 ' + response.status));
 }
 
-//Вывод категорий в select
-async function createCategorySearch() {
+// IIFE Вывод категорий в select
+(async function createCategorySearch() {
   let category = await apiFetch('https://swapi.dev/api/'); // 🤢
   let option;
 
@@ -30,7 +30,7 @@ async function createCategorySearch() {
   }
 
   select.innerHTML = option;
-}
+})();
 
 // Выбор категории для поиска
 function setCategory() {
@@ -67,5 +67,3 @@ ul.addEventListener('click', (e) => {
   document.querySelector('#birth_year').textContent = targetData.birth_year;
   document.querySelector('#films_count').textContent = targetData.films.length;
 });
-
-createCategorySearch();
