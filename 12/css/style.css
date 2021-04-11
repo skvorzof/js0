@@ -20,6 +20,10 @@
 #tablo {
   position: absolute;
   width: 100%;
+  z-index: 1;
+  text-align: center;
+  font-size: 70px;
+  color: yellow;
 }
 #gol {
   text-align: center;
