@@ -1,0 +1,24 @@
+button {
+  border-radius: 7px;
+  border: none;
+  background: blue;
+  color: white;
+  outline: none;
+  font-size: 20px;
+  line-height: 2;
+  cursor: pointer;
+  display: inline-block;
+  width: 150px;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translateY(-60%);
+  transform: translateX(-50%);
+  box-shadow: 0 5px 2px lightgrey;
+}
+button:hover {
+  background: rgb(23, 23, 255);
+}
+button:active {
+  box-shadow: 0 1px 2px lightgrey;
+}
