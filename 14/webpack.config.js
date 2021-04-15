@@ -3,9 +3,27 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
+
+const optimization = () => {
+  const config = {
+    splitChunks: {
+      chunks: 'all',
+    },
+  };
+  if (isProd) {
+    config.minimizer = [
+      new OptimizeCssAssetsWebpackPlugin(),
+      new TerserWebpackPlugin(),
+    ];
+  }
+
+  return config;
+};
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -15,6 +33,7 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, './build'),
   },
+  optimization: optimization(),
   devServer: {
     historyApiFallback: true,
     contentBase: path.resolve(__dirname, './build'),
@@ -49,7 +68,13 @@ module.exports = {
       // CSS
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {},
+          },
+          'css-loader',
+        ],
       },
     ],
   },
