@@ -1,4 +1,5 @@
 button {
+  margin-top: 1em;
   border-radius: 7px;
   border: none;
   background: blue;
@@ -9,11 +10,6 @@ button {
   cursor: pointer;
   display: inline-block;
   width: 150px;
-  position: absolute;
-  left: 50%;
-  top: 40%;
-  transform: translateY(-60%);
-  transform: translateX(-50%);
   box-shadow: 0 5px 2px lightgrey;
 }
 button:hover {
