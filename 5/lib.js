@@ -18,18 +18,16 @@
 
       let userNumber = prompt(`Введите число. Попыток ${amountCount}`);
 
-      if (userNumber === null) {
-        alert('Ну и ладно 🤪');
-        return;
-      } else if (isNaN(+userNumber) || userNumber == '') {
+      if (userNumber === null) return alert('Ну и ладно 🤪');
+
+      if (isNaN(+userNumber) || userNumber == '') {
         alert('Введите число 🤬 не тратьте попытки');
       } else if (+userNumber > secretNumber) {
         alert('Меньше👇 ');
       } else if (+userNumber < secretNumber) {
         alert('Больше 👆');
       } else {
-        alert('Ура, победа 🥳');
-        return;
+        return alert('Ура, победа 🥳');
       }
       amountCount--;
     }
