@@ -40,8 +40,8 @@ function UserList() {
     let res = false;
     // Проверка на существующие записи в массиве
     users.forEach((item) => {
-      let first = item.split(' ')[0];
-      let last = item.split(' ')[1];
+      const [first, last] = item.split(' '); // Деструктуризация
+
       if (first == user.firstName && last == user.lastName) res = true;
     });
     return res;
