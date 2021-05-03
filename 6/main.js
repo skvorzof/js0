@@ -1,9 +1,10 @@
 'use strict';
 
 function User(newUser) {
-  let user = newUser.split(' ');
-  this.firstName = user[0];
-  this.lastName = user[1];
+  const [first, last] = newUser.split(' '); // Деструктуризация
+
+  this.firstName = first;
+  this.lastName = last;
   this.regDate = new Date();
 
   this.addNewUser = function () {
