@@ -25,13 +25,13 @@ function UserList() {
     // Преобразовать в число, убрать пробелы и проверить на Number
     let isNum = +input.split(' ').join('');
     if (!isNaN(isNum)) {
-      alert('Не цифры');
+      alert('Не цифры'); //TODO return alert
       return false;
     }
     // Преобразовать в массив и проверить кол-во
     let arrFromInput = input.split(' ');
     if (arrFromInput.length != 2) {
-      alert('Не меньше и не больше 2 слов');
+      alert('Не меньше и не больше 2 слов'); //TODO return alert
       return false;
     }
     return true;
