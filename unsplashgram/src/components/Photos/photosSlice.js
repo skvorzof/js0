@@ -2,29 +2,45 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getPhotos = createAsyncThunk(
   'photos/getPhotos',
-  async ({ limit }) => {
-    return fetch(
-      `https://jsonplaceholder.typicode.com/posts?_limit=${limit}`
-    ).then((res) => res.json());
+  async (unsplash) => {
+    return unsplash.photos.listPhotos(1, 3, 'latest').then((res) => res.json());
+  }
+);
+
+export const setLikePhoto = createAsyncThunk(
+  'photos/setLikePhoto',
+  async (unsplash, id) => {
+    console.log(id);
+    unsplash.photos.likePhoto(id).then((res) => {
+      res.json();
+    });
   }
 );
 
 export const photosSlice = createSlice({
   name: 'photos',
   initialState: {
-    list: [],
+    data: [],
     status: null,
   },
   extraReducers: {
-    [getPhotos.pending]: (state, action) => {
-      state.status = 'loading';
+    [getPhotos.pending]: (state) => {
+      state.status = 'loading photos';
     },
     [getPhotos.fulfilled]: (state, { payload }) => {
-      state.list = payload;
-      state.status = 'success';
+      state.data = payload;
+      state.status = 'success photos';
     },
-    [getPhotos.rejected]: (state, action) => {
-      state.status = 'failed';
+    [getPhotos.rejected]: (state) => {
+      state.status = 'failed photos';
+    },
+    // likePhoto
+    [setLikePhoto.pending]: (state) => {
+      state.status = 'loading like';
+    },
+    [setLikePhoto.fulfilled]: (state, { payload }) => {
+      //   state.data = payload;
+      state.status = 'success like';
     },
   },
 });
